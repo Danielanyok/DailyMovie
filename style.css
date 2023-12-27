@@ -1,0 +1,281 @@
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+ion-icon {
+  font-size: 25px;
+  color: grey;
+  padding-right: 30px;
+}
+ion-icon:hover {
+  color: black;
+}
+
+
+
+
+.alert-container {
+    position: fixed;
+    top: 10vh;
+    left: 50vw;
+    transform: translateX(-50%);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: calc(2/3 * 100vw); /* Set the width to cover 2/3 of the screen */
+}
+
+.overlay .content {
+    margin: 0 auto;
+    border-radius: 8px;
+    border: 1px solid var(--color-tone-6);
+    background-color: var(--modal-content-bg);
+    color: var(--color-tone-1);
+    box-shadow: 0 4px 23px 0 rgba(0, 0, 0, 0.2);
+    width: calc(2/3 * 100vw); /* Set the width to cover 2/3 of the screen */
+    max-height: 90%;
+    overflow-y: auto;
+    padding: 16px;
+    box-sizing: border-box;
+    animation: SlideIn 200ms;
+}
+
+
+.alert {
+  pointer-events: none;
+  background-color: hsl(204, 7%, 85%);
+  padding: .75em;
+  border-radius: .25em;
+  opacity: 1;
+  transition: opacity 500ms ease-in-out;
+  margin-bottom: .5em;
+}
+
+.alert:last-child {
+  margin-bottom: 0;
+}
+
+.alert.hide {
+  opacity: 0;
+}
+
+
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: var(--header-height);
+  color: var(--color-tone-1);
+  border-bottom: 1px solid var(--color-tone-4);
+}
+
+header .title {
+  font-weight: 700;
+  font-size: 36px;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 360px) {
+  header .title {
+    font-size: 22px;
+    letter-spacing: 0.1rem;
+  }
+}
+
+button.icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 4px;
+  opacity: 1;
+  transition: opacity 500ms ease-in-out;
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  button.icon {
+    padding: 0 16px;
+  }
+}
+button.disabled-button {
+  display: hidden;
+  opacity: 0;
+}
+
+button svg {
+  pointer-events: none;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--opacity-50);
+  animation: SlideIn 100ms linear;
+  z-index: 2000;
+}
+
+header .modal-title {
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  pointer-events: none;
+}
+
+.overlay button.icon {
+  position: relative;
+  right: 0;
+  user-select: none;
+  cursor: pointer;
+}
+
+.overlay .content {
+  margin: 0 auto;
+  border-radius: 8px;
+  border: 1px solid var(--color-tone-6);
+  background-color: var(--modal-content-bg);
+  color: var(--color-tone-1);
+  box-shadow: 0 4px 23px 0 rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: var(--game-max-width);
+  max-height: 90%;
+  overflow-y: auto;
+  padding: 16px;
+  box-sizing: border-box;
+  animation: SlideIn 200ms;
+}
+@keyframes SlideIn {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+.overlay .content.closing {
+  animation: SlideOut 200ms;
+}
+@keyframes SlideOut {
+  0% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+}
+
+#help-modal .instructions {
+  font-size: 14px;
+  color: var(--color-tone-1);
+}
+#help-modal .examples {
+  border-bottom: 1px solid var(--color-tone-4);
+  border-top: 1px solid var(--color-tone-4);
+}
+#help-modal .example {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+#help-modal .example-grid {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  flex-grow: 1;
+  grid-template-columns: repeat(5, 4em);
+  grid-template-rows: repeat(1, 4em);
+  gap: .25em;
+  margin-bottom: 1em;
+}
+#help-modal section {
+  padding: 16px;
+  padding-top: 0px;
+}
+
+#settings-modal .setting {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--color-tone-4);
+  padding: 16px 0;
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  .setting {
+    padding: 16px;
+  }
+}
+#settings-modal .setting:last-child {
+  border-bottom: none;
+}
+
+#settings-modal a {
+  color: var(--color-tone-2);
+}
+#settings-modal a:visited {
+  color: var(--color-tone-2);
+}
+
+#settings-modal .title {
+  font-size: 18px;
+}
+#settings-modal .text {
+  padding-right: 8px;
+}
+#settings-modal .description {
+  font-size: 12px;
+  color: var(--color-tone-2);
+}
+
+#settings-modal .container {
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+#settings-modal .switch {
+  height: 20px;
+  width: 32px;
+  vertical-align: middle;
+  background: var(--color-tone-3);
+  border-radius: 999px;
+  display: block;
+  position: relative;
+  pointer-events: none;
+}
+#settings-modal .control[checked] .switch {
+  background: var(--color-correct);
+}
+#settings-modal .knob {
+  display: block;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  height: calc(100% - 4px);
+  width: 50%;
+  border-radius: 8px;
+  background: var(--white);
+  transform: translateX(0);
+  transition: transform 0.3s;
+  pointer-events: none;
+}
+#settings-modal .control[checked] .knob {
+  transform: translateX(calc(100% - 4px));
+}
+
