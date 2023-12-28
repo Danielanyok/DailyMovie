@@ -85,6 +85,10 @@
         #dark-mode-toggle {
           margin-left: 10px;
         }
+
+        .date-pickers {
+          display: flex;
+        }
       </style>
 </head>
 <body class="nightmode">
@@ -194,6 +198,12 @@
             <select id="select">
                 <option value="">All genres</option>
             </select>
+            <div class="date-pickers">
+              <label>From:</label>
+              <input id="earliest-date" type="date" />
+              <label>To:</label>
+              <input id="latest-date" type="date" />
+            </div>
         </div>   
         </div>
     </div>
