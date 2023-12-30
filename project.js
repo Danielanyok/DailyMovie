@@ -48,7 +48,47 @@ function hideMain() {
     main.style.display = "none";
 }
 
+const EARLIEST_POSSIBLE_DATE = new Date("1888/01/01");
+const LATEST_POSSIBLE_DATE = new Date("3000/01/01");
 
+function getDateRange() {
+  const earliest = document.getElementById("earliest-date").value;
+  const latest = document.getElementById("latest-date").value;
+  const earliestDate = new Date(earliest);
+  const latestDate = new Date(latest);
+  return [
+    isNaN(earliestDate) ? EARLIEST_POSSIBLE_DATE : earliestDate,
+    isNaN(latestDate) ? LATEST_POSSIBLE_DATE : latestDate,
+  ];
+}
+
+function formattedDate(date) {
+  const toPart = (options) => date.toLocaleDateString("en-US", options);
+  const year = toPart({ year: "numeric" });
+  const month = toPart({ month: "2-digit" });
+  const day = toPart({ day: "2-digit" });
+  return `${year}-${month}-${day}`;
+}
+
+function makeGenreFetchUrl(genre, pageNumber) {
+  const [earliest, latest] = getDateRange();
+  const params = new URLSearchParams([
+    ["api_key", apiKey],
+    ["language", "en-US"],
+    ["sort_by", "popularity.desc"],
+    ["include_adult", false],
+    ["include_video", false],
+    ["page", pageNumber],
+    ["primary_release_date.gte", formattedDate(earliest)],
+    ["primary_release_date.lte", formattedDate(latest)],
+  ]);
+
+  if (genre) {
+    params.set("with_genres", genre);
+  }
+
+  return params.toString();
+}
 
 async function getGenres() {
     let genresRequest = await fetch("https://api.themoviedb.org/3/genre/movie/list?api_key=03f3fa53ab9f0b658cf37093aba68e8c&language=en-US");
@@ -80,11 +120,19 @@ async function APIkey(genre, year) {
 
     console.log(year);
     showLoading();
-    let pageNumber = Math.floor(Math.random() *500) + 1;
-    let filmNumber = Math.floor(Math.random() *20) ;
-    console.log(selectButton.value);
-    let requestId = await fetch(`${discoverMovie}?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${pageNumber}${selectButton.value}${genreParam}${yearParam}`);
-    let dataDiscoverMovie = await requestId.json();
+
+  let pageNumber = Math.floor(Math.random() * 500) + 1;
+  let filmNumber = Math.floor(Math.random() * 20);
+
+  const results = await fetch(
+    discoverMovie + "?" + makeGenreFetchUrl(genre, pageNumber)
+  );
+  const dataDiscoverMovie = await results.json();
+  if (dataDiscoverMovie["results"].length === 0) {
+    hideLoading();
+    return;
+  }
+
     let movieId = dataDiscoverMovie["results"][filmNumber]["id"];
     movie_url = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`;
 
@@ -228,5 +276,4 @@ function homepageButton() {
     location.reload();
 }
     hompage_button.addEventListener("click", homepageButton);
-
 
