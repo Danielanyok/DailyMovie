@@ -212,7 +212,7 @@
   <script>
     
     const epochTimeInSeconds = Math.floor(Date.now() / 1000);
-    let epochTimeInDays = epochTimeInSeconds / (24 * 60 * 60)-2;
+    let epochTimeInDays = epochTimeInSeconds / (24 * 60 * 60)-1;
 
     function daysSinceEpoch(year, month, day) {
         const unixEpoch = new Date(0); // January 1, 1970
@@ -300,6 +300,10 @@
       };
 
       displayMovieDetails();
+      setTimeout(function() {
+        const mainContainer = document.getElementById('main-container');
+        mainContainer.scrollIntoView({ behavior: 'smooth' });
+      }, 1000);
     }
   </script>
 
@@ -310,7 +314,7 @@
     </a>
     
 </div>
-<div class="wrapper">
+<div class="wrapper" id="main-container">
     <div id="poster">
         <img id="poster_image" src="" alt="">
     </div>
@@ -330,8 +334,9 @@
             <span id="releaseDateDisplaySpan"> </span> <span id="releaseDateDisplaySpan2"></span>
         </div>
         
-        <div id="ytbTrailer">
-            
+        <div style="margin-top: 30px;">
+          
+            <a id="ytbTrailer"></a>
 
         </div>
     </div>

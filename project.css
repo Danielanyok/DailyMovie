@@ -44,7 +44,12 @@ p {
     color: black;
   }
   
-  
+  .div-content {
+    width: 100%;
+    display: grid;
+    gap: 50px;
+    text-align: center;
+  }
   
   
   .alert-container {
@@ -115,7 +120,6 @@ p {
     height: 50px;
     background-color: rgb(58, 186, 23);
     color: white;
-    margin-left: 17cm;
 }
 
 .btn2:hover {
@@ -387,7 +391,9 @@ p {
     z-index: 99;
   }
   
-  
+  .div {
+    display: block;
+  }
   .select-hide {
     display: none;
   }
