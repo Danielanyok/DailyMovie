@@ -19,12 +19,15 @@
       color: #ffffff;
     }
 
-    header {
+    nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 10px 0;
       background-color: #333333;
+      
+      position: fixed;
+      inset: 0 0 auto;
     }
 
     .menu {
@@ -95,7 +98,7 @@
 
 <body class="nightmode">
   <div id="game">
-    <header>
+    <nav>
       <div class="menu">
         <button id="help-button" class="icon" aria-label="help" onclick="toggleModal('help-modal')">
           <ion-icon name="help-circle-outline"></ion-icon>
@@ -107,7 +110,7 @@
           <ion-icon name="settings-outline"></ion-icon>
         </button>
       </div>
-    </header>
+    </nav>
     <div class="alert-container" data-alert-container></div>
     <div id="help-modal" hidden class="modal">
       <div class="overlay">
