@@ -30,19 +30,19 @@
       inset: 0 0 auto;
     }
 
-    .menu {
-      display: flex;
-      gap: 10px;
-    }
 
     .icon {
       background: none;
       border: none;
       cursor: pointer;
-      padding: 0;
       display: flex;
       align-items: center;
+      padding: 0;
       color: #ffffff;
+    }
+
+    .icon > ion-icon {
+      padding: 0;
     }
 
     img {
@@ -99,17 +99,13 @@
 <body class="nightmode">
   <div id="game">
     <nav>
-      <div class="menu">
-        <button id="help-button" class="icon" aria-label="help" onclick="toggleModal('help-modal')">
-          <ion-icon name="help-circle-outline"></ion-icon>
-        </button>
-      </div>
+      <button id="help-button" class="icon" aria-label="help" onclick="toggleModal('help-modal')">
+        <ion-icon name="help-circle-outline"></ion-icon>
+      </button>
       <h1>Daily Movies</h1>
-      <div class="menu">
-        <button id="settings-button" class="icon" aria-label="settings" onclick="toggleModal('settings-modal')">
-          <ion-icon name="settings-outline"></ion-icon>
-        </button>
-      </div>
+      <button id="settings-button" class="icon" aria-label="settings" onclick="toggleModal('settings-modal')">
+        <ion-icon name="settings-outline"></ion-icon>
+      </button>
     </nav>
     <div class="alert-container" data-alert-container></div>
     <div id="help-modal" hidden class="modal">
