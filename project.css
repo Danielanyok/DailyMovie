@@ -47,7 +47,7 @@ p {
 }
 
 ion-icon {
-  font-size: 1.5rem;
+  font-size: clamp(1.5rem, 5vw + 1rem, 2rem);
   color: grey;
 }
 
