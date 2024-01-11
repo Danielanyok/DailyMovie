@@ -105,28 +105,24 @@ ion-icon:hover {
   transition: all 0.5s;
   width: 250px;
   height: 50px;
-  background-color: dodgerblue;
   color: white;
   border: none;
   outline: none;
+}
+
+.btn--blue {
+  background-color: dodgerblue;
+}
+
+.btn--green {
+  background-color: rgb(58, 186, 23);
 }
 
 .btn:hover {
   cursor: pointer;
   transform: scale(1.1);
 }
-.btn2 {
-  transition: all 0.5s;
-  width: 250px;
-  height: 50px;
-  background-color: rgb(58, 186, 23);
-  color: white;
-}
 
-.btn2:hover {
-  cursor: pointer;
-  transform: scale(1.1);
-}
 .nav-bar {
   top: 14px;
   position: fixed;
