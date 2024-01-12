@@ -48,27 +48,6 @@ function hideMain() {
     main.style.display = "none";
 }
 
-const EARLIEST_POSSIBLE_DATE = new Date("1888/01/01");
-const LATEST_POSSIBLE_DATE = new Date("3000/01/01");
-
-function getDateRange() {
-  const earliest = document.getElementById("earliest-date").value;
-  const latest = document.getElementById("latest-date").value;
-  const earliestDate = new Date(earliest);
-  const latestDate = new Date(latest);
-  return [
-    isNaN(earliestDate) ? EARLIEST_POSSIBLE_DATE : earliestDate,
-    isNaN(latestDate) ? LATEST_POSSIBLE_DATE : latestDate,
-  ];
-}
-
-function formattedDate(date) {
-  const toPart = (options) => date.toLocaleDateString("en-US", options);
-  const year = toPart({ year: "numeric" });
-  const month = toPart({ month: "2-digit" });
-  const day = toPart({ day: "2-digit" });
-  return `${year}-${month}-${day}`;
-}
 
 function makeGenreFetchUrl(genre, pageNumber) {
   const [earliest, latest] = getDateRange();
