@@ -14,6 +14,12 @@
       font-family: 'Arial', sans-serif;
     }
 
+    h1 > a {
+      font-size: inherit;
+      color: inherit;
+      text-decoration: none;
+    }
+
     .nightmode {
       background-color: #1a1a1a;
       color: #ffffff;
@@ -109,7 +115,7 @@
       <button id="help-button" class="icon" aria-label="help" onclick="toggleModal('help-modal')">
         <ion-icon name="help-circle-outline"></ion-icon>
       </button>
-      <h1>Daily Movies</h1>
+      <h1><a href="./index.html">Daily Movies</a></h1>
       <button id="settings-button" class="icon" aria-label="settings" onclick="toggleModal('settings-modal')">
         <ion-icon name="settings-outline"></ion-icon>
       </button>
@@ -226,14 +232,8 @@
     <img src="loading.gif" alt=""></img>
   </div>
   <div id="movie_randomed_page">
-    <div class="nav-bar">
-      <button class="nav-bar__btn" id="homepageButton">Homepage</button>
-    </div>
-    <div class="header"></div>
     <div id="background-image">
-      <div id="custom_bg">
-
-      </div>
+      <div id="custom_bg"></div>
     </div>
     <div class="wrapper">
       <div id="poster">
