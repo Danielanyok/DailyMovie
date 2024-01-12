@@ -12,6 +12,13 @@
     body {
       margin: 0;
       font-family: 'Arial', sans-serif;
+      overflow-x: hidden;
+    }
+
+    h1 > a {
+      font-size: inherit;
+      color: inherit;
+      text-decoration: none;
     }
 
     .nightmode {
@@ -19,27 +26,30 @@
       color: #ffffff;
     }
 
-    header {
+    nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 0;
+      gap: 1rem;
+      padding: 10px;
       background-color: #333333;
-    }
-
-    .menu {
-      display: flex;
-      gap: 10px;
+      
+      text-align: center;
+      width: 100%;
     }
 
     .icon {
       background: none;
       border: none;
       cursor: pointer;
-      padding: 0;
       display: flex;
       align-items: center;
+      padding: 0;
       color: #ffffff;
+    }
+
+    .icon > ion-icon {
+      padding: 0;
     }
 
     img {
@@ -53,21 +63,26 @@
 
     .overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 1);
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
       display: flex;
       align-items: center;
       justify-content: center;
+      z-index: 100;
+      visibility: hidden;
     }
 
     .modal {
-      background: #fff;
-      padding: 20px;
+      background: #7f7f7f;
+      padding: 1.2rem;
       border-radius: 5px;
-      position: relative;
+
+      z-index: 200;
+
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
 
     .close-modal-button {
@@ -75,6 +90,11 @@
       top: 10px;
       right: 10px;
       cursor: pointer;
+    }
+
+    #game {
+      display: flex;
+      flex-direction: column;
     }
 
     /* Dark Mode Switch Styles */
@@ -95,91 +115,120 @@
 
 <body class="nightmode">
   <div id="game">
-    <header>
-      <div class="menu">
-        <button id="help-button" class="icon" aria-label="help" onclick="toggleModal('help-modal')">
-          <ion-icon name="help-circle-outline"></ion-icon>
-        </button>
-      </div>
-      <h1>Daily Movies</h1>
-      <div class="menu">
-        <button id="settings-button" class="icon" aria-label="settings" onclick="toggleModal('settings-modal')">
-          <ion-icon name="settings-outline"></ion-icon>
-        </button>
-      </div>
-    </header>
+    <nav>
+      <button id="help-button" class="icon" aria-label="help" onclick="toggleModal('help-modal')">
+        <ion-icon name="help-circle-outline"></ion-icon>
+      </button>
+      <h1><a href="./index.html">Daily Movies</a></h1>
+      <button id="settings-button" class="icon" aria-label="settings" onclick="toggleModal('settings-modal')">
+        <ion-icon name="settings-outline"></ion-icon>
+      </button>
+    </nav>
     <div class="alert-container" data-alert-container></div>
     <div id="help-modal" hidden class="modal">
-      <div class="overlay">
-        <div class="content">
-          <header>
-            <div></div>
-            <div class="modal-title">ABOUT</div>
-            <button class="icon close-modal-button" aria-label="close" onclick="toggleModal('help-modal')">
-              X
-            </button>
-          </header>
-          <section>
-            <div class="instructions">
-              <p>Find a <strong>New Movie</strong> everyday.</p>
-              <p>Explore the daily movie's poster, rating, and a brief description, creating an engaging and informative
-                experience for movie enthusiasts</p>
+      <div class="content">
+        <header>
+          <div></div>
+          <div class="modal-title">ABOUT</div>
+          <button class="icon close-modal-button" aria-label="close" onclick="toggleModal('help-modal')">
+            X
+          </button>
+        </header>
+        <section>
+          <div class="instructions">
+            <p>Find a <strong>New Movie</strong> everyday.</p>
+            <p>Explore the daily movie's poster, rating, and a brief description, creating an engaging and informative
+              experience for movie enthusiasts</p>
 
-              <p><strong>A new Movie will be available each day!</strong></p>
-            </div>
-          </section>
-        </div>
+            <p><strong>A new Movie will be available each day!</strong></p>
+          </div>
+        </section>
       </div>
     </div>
+    <div class="overlay" id="main-overlay"></div>
     <div id="settings-modal" hidden class="modal">
-      <div class="overlay">
-        <div class="content">
-          <header>
-            <div></div>
-            <div class="modal-title">SETTINGS</div>
-            <button class="icon close-modal-button" aria-label="close" onclick="toggleModal('settings-modal')">
-              X
-            </button>
-          </header>
-          <section>
-            <div class="setting" id="dark-mode-theme">
-              <div class="text">
-                <div class="title">Dark Mode</div>
-                <div class="description">Enable dark mode for a comfortable experience.</div>
-              </div>
-              <div class="control" id="dark-mode-toggle">
-                <label for="dark-mode-switch">Dark Mode:</label>
-                <input type="checkbox" id="dark-mode-switch" onclick="toggleDarkMode()">
-              </div>
+      <div class="content">
+        <header>
+          <div></div>
+          <div class="modal-title">SETTINGS</div>
+          <button class="icon close-modal-button" aria-label="close" onclick="toggleModal('settings-modal')">
+            X
+          </button>
+        </header>
+        <section>
+          <div class="setting" id="dark-mode-theme">
+            <div class="text">
+              <div class="title">Dark Mode</div>
+              <div class="description">Enable dark mode for a comfortable experience.</div>
             </div>
-            <div class="setting">
-              <div class="text">
-                <div class="title">Support Creator</div>
-              </div>
-              <div class="control">
-                <a class="social" href="https://twitter.com/danielanyok" target="_blank"><ion-icon name="logo-twitter"></ion-icon></a>
-                <a class="social" href="https://instagram.com/danielanyok" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a>
-                <a class="social" href="https://github.com/Danielanyok" target="_blank"><ion-icon name="logo-github"></ion-icon></a>
-              </div>
+            <div class="control" id="dark-mode-toggle">
+              <label for="dark-mode-switch">Dark Mode:</label>
+              <input type="checkbox" id="dark-mode-switch" onclick="toggleDarkMode()">
             </div>
-            <div class="setting">
-              <div class="text">
-                <div class="title"> Share </div>
-              </div>
-              <div class="control">
-                <a href="#">Link</a>
-              </div>
+          </div>
+          <div class="setting">
+            <div class="text">
+              <div class="title">Support Creator</div>
             </div>
-          </section>
+            <div class="control">
+              <a class="social" href="#" target="_blank"><ion-icon name="logo-twitter"></ion-icon></a>
+              <a class="social" href="#" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a>
+              <a class="social" href="#" target="_blank"><ion-icon name="logo-github"></ion-icon></a>
+            </div>
+          </div>
+          <div class="setting">
+            <div class="text">
+              <div class="title"> Share </div>
+            </div>
+            <div class="control">
+              <a href="#">Link</a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div id="movie_randomed_page">
+      <div id="background-image">
+        <div id="custom_bg"></div>
+      </div>
+      <div class="wrapper">
+        <div id="poster">
+          <img id="poster_image" src="" alt="">
+        </div>
+        <div id="content">
+          <div id="title">
+            <h1 id="titleContent">This is Title</h1>
+            <div id="list-genres"></div>
+          </div>
+          <div id="overview">
+            <h3>Overview</h3>
+            <p id="content-overview">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi, magnam, ex veritatis ea nulla odio libero
+              voluptate atque ipsum nisi unde a fugit asperiores provident! Dolorum voluptate deserunt vel facilis.
+            </p>
+          </div>
+          <div id="popularityDisplay">
+            <span id="popularitySpan1">Popularity: </span><span id="popularitySpan2"> 9.572</span>
+          </div>
+          <div id="runtimeDisplay">
+            <span id="runtimeDisplaySpan">Run time: </span><span id="runtimeDisplaySpan2"> 9.572</span>
+          </div>
+          <div id="releaseDateDisplay">
+            <span id="releaseDateDisplaySpan">Release date: </span> <span id="releaseDateDisplaySpan2">27/9/1010</span>
+          </div>
+          <div id="ytbTrailer"></div>
         </div>
       </div>
+      <div class="footer"></div>
     </div>
   </div>
 
   <script>
     function toggleModal(modalId) {
       var modal = document.getElementById(modalId);
+      var overlay = document.getElementById("main-overlay");
       modal.hidden = !modal.hidden;
+      overlay.style.visibility = modal.hidden ? "hidden" : "visible";
     }
 
     function toggleDarkMode() {
@@ -190,28 +239,23 @@
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <div id="main">
-    <div id="backgroundMyVideo">
-
-    </div>
+    <div id="backgroundMyVideo"></div>
     <div class="div-content">
-      <div class="div div-select" style="z-index: 99">
-        <button class="btn">Random a Movie</button>
-        <div class="custom-select">
-          <select id="select">
-            <option value="">All genres</option>
-          </select>
-          <div class="date-pickers">
-            <label>From:</label>
-            <input id="earliest-date" type="date" />
-            <label>To:</label>
-            <input id="latest-date" type="date" />
-          </div>
+      <button class="btn btn--blue">Random a Movie</button>
+      <div class="custom-select">
+        <select id="select">
+          <option value="">All genres</option>
+        </select>
+        <div class="date-pickers">
+          <label>From:</label>
+          <input id="earliest-date" type="date" />
+          <label>To:</label>
+          <input id="latest-date" type="date" />
         </div>
       </div>
-      
       <div class="div">
-        <a href="365.html" >
-          <button class="btn2">365 Challenge</button>
+        <a href="365.html" target="_blank">
+          <button class="btn btn--green">365 Challenge</button>
         </a>
       </div>
     </div>
@@ -222,52 +266,6 @@
 
   <div id="loading_page">
     <img src="loading.gif" alt=""></img>
-  </div>
-  <div id="movie_randomed_page">
-    <div class="nav-bar">
-        <button class="nav-bar__btn" id="randomAgainButton">Random </button>
-        <button class="nav-bar__btn" id="homepageButton">Homepage</button>
-    </div>
-    <div class="header"></div>
-    <div id="background-image">
-      <div id="custom_bg">
-
-      </div>
-    </div>
-    <div class="wrapper">
-      <div id="poster">
-        <img id="poster_image" src="" alt="">
-      </div>
-      <div id="content">
-        <div id="title">
-          <h1 id="titleContent">This is Title</h1>
-          <div id="list-genres"></div>
-        </div>
-        <div id="overview">
-          <h3>Overview</h3>
-          <p id="content-overview">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi, magnam, ex veritatis ea nulla odio libero
-            voluptate atque ipsum nisi unde a fugit asperiores provident! Dolorum voluptate deserunt vel facilis.
-          </p>
-        </div>
-        <div id="popularityDisplay">
-          <span id="popularitySpan1">Popularity: </span><span id="popularitySpan2"> 9.572</span>
-        </div>
-        <div id="runtimeDisplay">
-          <span id="runtimeDisplaySpan">Run time: </span><span id="runtimeDisplaySpan2"> 9.572</span>
-        </div>
-        <div id="releaseDateDisplay">
-          <span id="releaseDateDisplaySpan">Release date: </span> <span id="releaseDateDisplaySpan2">27/9/1010</span>
-        </div>
-
-        <div id="ytbTrailer">
-
-        </div>
-      </div>
-    </div>
-    <div class="footer">
-
-    </div>
   </div>
   <script src="project.js"></script>
 
