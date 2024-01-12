@@ -345,9 +345,6 @@ ion-icon:hover {
 .custom-select {
   position: relative;
   font-family: Arial;
-  /* width: 20%; */
-  /* max-width: 300px; */
-  /* margin-left: 25px; */
 }
 
 .custom-select select {
@@ -394,7 +391,6 @@ ion-icon:hover {
   top: 100%;
   left: 0;
   right: 0;
-  z-index: 99;
   overflow: scroll;
   max-height: 30vh;
 }
