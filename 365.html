@@ -19,12 +19,10 @@
       color: #ffffff;
     }
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 0;
-      background-color: #333333;
+    h1 > a {
+      font-size: inherit;
+      color: inherit;
+      text-decoration: none;
     }
 
     .menu {
@@ -51,23 +49,44 @@
       margin-top: 20px;
     }
 
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 10px;
+      background-color: #333333;
+      
+      text-align: center;
+      position: fixed;
+      inset: 0 0 auto;
+
+      z-index: 150;
+    }
+
     .overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       background: rgba(0, 0, 0, 0.5);
       display: flex;
       align-items: center;
       justify-content: center;
+      z-index: 100;
+      visibility: hidden;
     }
 
     .modal {
-      background: #fff;
-      padding: 20px;
+      background: #7f7f7f;
+      padding: 1.2rem;
       border-radius: 5px;
-      position: relative;
+
+      z-index: 200;
+
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
 
     .close-modal-button {
@@ -95,83 +114,80 @@
 
 <body class="nightmode">
   <div id="game">
-    <header>
+    <nav>
       <div class="menu">
         <button id="help-button" class="icon" aria-label="help" onclick="toggleModal('help-modal')">
           <ion-icon name="help-circle-outline"></ion-icon>
         </button>
       </div>
-      <h1>Daily Movies</h1>
+      <h1><a href="./index.html">Daily Movies</a></h1>
       <div class="menu">
         <button id="settings-button" class="icon" aria-label="settings" onclick="toggleModal('settings-modal')">
           <ion-icon name="settings-outline"></ion-icon>
         </button>
       </div>
-    </header>
+    </nav>
     <div class="alert-container" data-alert-container></div>
+    <div class="overlay" id="main-overlay"></div>
     <div id="help-modal" hidden class="modal">
-      <div class="overlay">
-        <div class="content">
-          <header>
-            <div></div>
-            <div class="modal-title">ABOUT</div>
-            <button class="icon close-modal-button" aria-label="close" onclick="toggleModal('help-modal')">
-              X
-            </button>
-          </header>
-          <section>
-            <div class="instructions">
-              <p>Find a <strong>New Movie</strong> everyday.</p>
-              <p>Explore the daily movie's poster, rating, and a brief description, creating an engaging and informative
-                experience for movie enthusiasts</p>
+      <div class="content">
+        <header>
+          <div></div>
+          <div class="modal-title">ABOUT</div>
+          <button class="icon close-modal-button" aria-label="close" onclick="toggleModal('help-modal')">
+            X
+          </button>
+        </header>
+        <section>
+          <div class="instructions">
+            <p>Find a <strong>New Movie</strong> everyday.</p>
+            <p>Explore the daily movie's poster, rating, and a brief description, creating an engaging and informative
+              experience for movie enthusiasts</p>
 
-              <p><strong>A new Movie will be available each day!</strong></p>
-            </div>
-          </section>
-        </div>
+            <p><strong>A new Movie will be available each day!</strong></p>
+          </div>
+        </section>
       </div>
     </div>
     <div id="settings-modal" hidden class="modal">
-      <div class="overlay">
-        <div class="content">
-          <header>
-            <div></div>
-            <div class="modal-title">SETTINGS</div>
-            <button class="icon close-modal-button" aria-label="close" onclick="toggleModal('settings-modal')">
-              X
-            </button>
-          </header>
-          <section>
-            <div class="setting" id="dark-mode-theme">
-              <div class="text">
-                <div class="title">Dark Mode</div>
-                <div class="description">Enable dark mode for a comfortable experience.</div>
-              </div>
-              <div class="control" id="dark-mode-toggle">
-                <label for="dark-mode-switch">Light Mode:</label>
-                <input type="radio" id="dark-mode-switch" onclick="toggleDarkMode()">
-              </div>
+      <div class="content">
+        <header>
+          <div></div>
+          <div class="modal-title">SETTINGS</div>
+          <button class="icon close-modal-button" aria-label="close" onclick="toggleModal('settings-modal')">
+            X
+          </button>
+        </header>
+        <section>
+          <div class="setting" id="dark-mode-theme">
+            <div class="text">
+              <div class="title">Dark Mode</div>
+              <div class="description">Enable dark mode for a comfortable experience.</div>
             </div>
-            <div class="setting">
-              <div class="text">
-                <div class="title">Support Creator</div>
-              </div>
-              <div class="control">
-                <a class="social" href="#" target="_blank"><ion-icon name="logo-twitter"></ion-icon></a>
-                <a class="social" href="#" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a>
-                <a class="social" href="#" target="_blank"><ion-icon name="logo-github"></ion-icon></a>
-              </div>
+            <div class="control" id="dark-mode-toggle">
+              <label for="dark-mode-switch">Light Mode:</label>
+              <input type="radio" id="dark-mode-switch" onclick="toggleDarkMode()">
             </div>
-            <div class="setting">
-              <div class="text">
-                <div class="title"> Updates </div>
-              </div>
-              <div class="control">
-                <a href="#">Link</a>
-              </div>
+          </div>
+          <div class="setting">
+            <div class="text">
+              <div class="title">Support Creator</div>
             </div>
-          </section>
-        </div>
+            <div class="control">
+              <a class="social" href="#" target="_blank"><ion-icon name="logo-twitter"></ion-icon></a>
+              <a class="social" href="#" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a>
+              <a class="social" href="#" target="_blank"><ion-icon name="logo-github"></ion-icon></a>
+            </div>
+          </div>
+          <div class="setting">
+            <div class="text">
+              <div class="title"> Updates </div>
+            </div>
+            <div class="control">
+              <a href="#">Link</a>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   </div>
@@ -179,7 +195,9 @@
   <script>
     function toggleModal(modalId) {
       var modal = document.getElementById(modalId);
+      var overlay = document.getElementById("main-overlay");
       modal.hidden = !modal.hidden;
+      overlay.style.visibility = modal.hidden ? "hidden" : "visible";
     }
 
     function toggleDarkMode() {
@@ -195,18 +213,15 @@
     </div>
 
 
-    <div class="div div-select" style="z-index: 99">
+    <div class="div div-select">
       <div class="custom-select">
         <div class="date-pickers">
           <label>Select Date:</label>
           <input id="select-date" type="date" />
         </div>
-        <button class="btn" onclick="getMovie()">Random a Movie</button>
+        <button class="btn btn--blue" onclick="getMovie()">Random a Movie</button>
       </div>
       <br>
-      <!-- <a href="365.html" target="_blank">
-        <button class="btn2">Click Me!</button>
-      </a> -->
     </div>
   </div>
   <script>
@@ -308,12 +323,6 @@
   </script>
 
 </body>
-<div class="nav-bar">
-    <a href="index.html" target="_blank">
-        <button class="nav-bar__btn" id="homepageButton">Homepage</button>
-    </a>
-    
-</div>
 <div class="wrapper" id="main-container">
     <div id="poster">
         <img id="poster_image" src="" alt="">

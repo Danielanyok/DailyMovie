@@ -48,11 +48,11 @@ p {
 
 ion-icon {
   font-size: clamp(1.5rem, 5vw + 1rem, 2rem);
-  color: grey;
+  color: lightgray;
 }
 
 ion-icon:hover {
-  color: black;
+  color: white;
 }
 
 .div-content {
@@ -212,18 +212,27 @@ ion-icon:hover {
 
 .wrapper {
   display: flex;
-  height: auto;
+  align-items: center;
+  padding: 1.4rem;
+  gap: 1.2rem;
 }
 
 #poster {
-  width: 100%;
-  flex: 1;
-  display: flex;
-  padding: 24px;
+  flex-shrink: 0.2;
+}
+
+#poster_image {
+  object-fit: cover;
+}
+
+@media screen and (max-width: 720px) {
+  .wrapper {
+    flex-direction: column;
+  }
 }
 
 #content {
-  width: 70%;
+  /* width: 70%; */
   height: 100%;
   padding: 20px;
 }
