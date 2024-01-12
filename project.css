@@ -56,10 +56,17 @@ ion-icon:hover {
 }
 
 .div-content {
-  width: 100%;
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
   gap: 3.125rem;
   text-align: center;
+  padding-inline: 2rem;
+}
+
+.div-content > * {
+  flex: 1;
 }
 
 .alert-container {
@@ -338,9 +345,9 @@ ion-icon:hover {
 .custom-select {
   position: relative;
   font-family: Arial;
-  width: 20%;
-  max-width: 300px;
-  margin-left: 25px;
+  /* width: 20%; */
+  /* max-width: 300px; */
+  /* margin-left: 25px; */
 }
 
 .custom-select select {
@@ -390,9 +397,6 @@ ion-icon:hover {
   z-index: 99;
 }
 
-.div {
-  display: block;
-}
 .select-hide {
   display: none;
 }
@@ -441,6 +445,7 @@ ion-icon:hover {
   border-bottom: 1px solid var(--color-tone-4);
   padding: 16px 0;
 }
+
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
   .setting {
     padding: 16px;
