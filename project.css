@@ -395,6 +395,8 @@ ion-icon:hover {
   left: 0;
   right: 0;
   z-index: 99;
+  overflow: scroll;
+  max-height: 30vh;
 }
 
 .select-hide {
