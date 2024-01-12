@@ -12,6 +12,7 @@
     body {
       margin: 0;
       font-family: 'Arial', sans-serif;
+      overflow-x: hidden;
     }
 
     h1 > a {
@@ -34,10 +35,8 @@
       background-color: #333333;
       
       text-align: center;
-      position: fixed;
-      inset: 0 0 auto;
+      width: 100%;
     }
-
 
     .icon {
       background: none;
@@ -80,7 +79,7 @@
 
       z-index: 200;
 
-      position: absolute;
+      position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -91,6 +90,11 @@
       top: 10px;
       right: 10px;
       cursor: pointer;
+    }
+
+    #game {
+      display: flex;
+      flex-direction: column;
     }
 
     /* Dark Mode Switch Styles */
@@ -183,6 +187,40 @@
         </section>
       </div>
     </div>
+    <div id="movie_randomed_page">
+      <div id="background-image">
+        <div id="custom_bg"></div>
+      </div>
+      <div class="wrapper">
+        <div id="poster">
+          <img id="poster_image" src="" alt="">
+        </div>
+        <div id="content">
+          <div id="title">
+            <h1 id="titleContent">This is Title</h1>
+            <div id="list-genres"></div>
+          </div>
+          <div id="overview">
+            <h3>Overview</h3>
+            <p id="content-overview">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi, magnam, ex veritatis ea nulla odio libero
+              voluptate atque ipsum nisi unde a fugit asperiores provident! Dolorum voluptate deserunt vel facilis.
+            </p>
+          </div>
+          <div id="popularityDisplay">
+            <span id="popularitySpan1">Popularity: </span><span id="popularitySpan2"> 9.572</span>
+          </div>
+          <div id="runtimeDisplay">
+            <span id="runtimeDisplaySpan">Run time: </span><span id="runtimeDisplaySpan2"> 9.572</span>
+          </div>
+          <div id="releaseDateDisplay">
+            <span id="releaseDateDisplaySpan">Release date: </span> <span id="releaseDateDisplaySpan2">27/9/1010</span>
+          </div>
+          <div id="ytbTrailer"></div>
+        </div>
+      </div>
+      <div class="footer"></div>
+    </div>
   </div>
 
   <script>
@@ -201,9 +239,7 @@
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <div id="main">
-    <div id="backgroundMyVideo">
-
-    </div>
+    <div id="backgroundMyVideo"></div>
     <div class="div-content">
       <button class="btn btn--blue">Random a Movie</button>
       <div class="custom-select">
@@ -230,40 +266,6 @@
 
   <div id="loading_page">
     <img src="loading.gif" alt=""></img>
-  </div>
-  <div id="movie_randomed_page">
-    <div id="background-image">
-      <div id="custom_bg"></div>
-    </div>
-    <div class="wrapper">
-      <div id="poster">
-        <img id="poster_image" src="" alt="">
-      </div>
-      <div id="content">
-        <div id="title">
-          <h1 id="titleContent">This is Title</h1>
-          <div id="list-genres"></div>
-        </div>
-        <div id="overview">
-          <h3>Overview</h3>
-          <p id="content-overview">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi, magnam, ex veritatis ea nulla odio libero
-            voluptate atque ipsum nisi unde a fugit asperiores provident! Dolorum voluptate deserunt vel facilis.
-          </p>
-        </div>
-        <div id="popularityDisplay">
-          <span id="popularitySpan1">Popularity: </span><span id="popularitySpan2"> 9.572</span>
-        </div>
-        <div id="runtimeDisplay">
-          <span id="runtimeDisplaySpan">Run time: </span><span id="runtimeDisplaySpan2"> 9.572</span>
-        </div>
-        <div id="releaseDateDisplay">
-          <span id="releaseDateDisplaySpan">Release date: </span> <span id="releaseDateDisplaySpan2">27/9/1010</span>
-        </div>
-        <div id="ytbTrailer"></div>
-      </div>
-    </div>
-    <div class="footer"></div>
   </div>
   <script src="project.js"></script>
 
