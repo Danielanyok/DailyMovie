@@ -157,9 +157,9 @@
                 <div class="title">Support Creator</div>
               </div>
               <div class="control">
-                <a class="social" href="#" target="_blank"><ion-icon name="logo-twitter"></ion-icon></a>
-                <a class="social" href="#" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a>
-                <a class="social" href="#" target="_blank"><ion-icon name="logo-github"></ion-icon></a>
+                <a class="social" href="https://twitter.com/danielanyok" target="_blank"><ion-icon name="logo-twitter"></ion-icon></a>
+                <a class="social" href="https://instagram.com/danielanyok" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a>
+                <a class="social" href="https://github.com/Danielanyok" target="_blank"><ion-icon name="logo-github"></ion-icon></a>
               </div>
             </div>
             <div class="setting">
@@ -204,9 +204,7 @@
         <button class="btn" onclick="getMovie()">Random a Movie</button>
       </div>
       <br>
-      <!-- <a href="365.html" target="_blank">
-        <button class="btn2">Click Me!</button>
-      </a> -->
+
     </div>
   </div>
   <script>
@@ -282,7 +280,7 @@
           movieTitleElement.textContent = `Today's Movie Recommendation: ${movieDetails.title}`;
           movieReleaseDate.textContent = `Release Date: ${formattedDate}`;
           moviePosterElement.src = `https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`;
-          const overview = detailsData.overview ? `Overview: ${detailsData.overview} minutes` : 'There is no information about of Movie Overview provided';
+          const overview = detailsData.overview ? `${detailsData.overview} minutes` : 'There is no information about of Movie Overview provided';
           movieOverviewElement.textContent = `Overview: ${overview}`;
           movieRuntimeElement.textContent = `Runtime: ${detailsData.runtime} minutes`;
           if (detailsData.videos && detailsData.videos.results.length > 0) {
@@ -309,7 +307,7 @@
 
 </body>
 <div class="nav-bar">
-    <a href="index.html" target="_blank">
+    <a href="index.html">
         <button class="nav-bar__btn" id="homepageButton">Homepage</button>
     </a>
     
@@ -322,6 +320,9 @@
         <div id="title">
             <h1 id="titleContent"></h1>
             <div id="list-genres"></div>
+        </div>        
+        <div id="poster2">
+            <img id="poster_image" src="" alt="">
         </div>
         <div id="overview">
             <h3></h3>
